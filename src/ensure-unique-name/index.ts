@@ -8,9 +8,9 @@ export function ensureUniqueName(
     return name;
   }
 
-  const match = name.match(/^(.*?)(\d+)$/);
-  const baseName = match ? match[1] : name;
-  let counter = match ? Number.parseInt(match[2], 10) + 1 : 1;
+  const [, base, digits] = name.match(/^(.*?)(\d+)$/) ?? [];
+  const baseName = base ?? name;
+  let counter = digits ? Number.parseInt(digits, 10) + 1 : 1;
 
   let candidateName = baseName + counter;
   while (set.has(candidateName)) {
