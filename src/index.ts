@@ -4,3 +4,4 @@ export * from "./create-function";
 export * from "./registry";
 export * from "./console-styles";
 export * from "./columnar";
+export * from "./evaluate-template";
