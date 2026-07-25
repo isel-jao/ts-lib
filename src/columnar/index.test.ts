@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { toColumnarByAllKeys, toColumnarByFirstKeys } from "./index";
+import { fromColumnar, toColumnarByAllKeys, toColumnarByFirstKeys } from "./index";
 
 describe("toColumnarByFirstKeys", () => {
   it("converts an array of objects into arrays keyed by column", () => {
@@ -98,5 +98,42 @@ describe("toColumnarByAllKeys", () => {
     expect(toColumnarByAllKeys([{ a: undefined }, { a: 1 }])).toEqual({
       a: [undefined, 1],
     });
+  });
+});
+
+describe("fromColumnar", () => {
+  it("converts columns into an array of row objects", () => {
+    expect(fromColumnar({ a: [1, 3], b: [2, 4] })).toEqual([
+      { a: 1, b: 2 },
+      { a: 3, b: 4 },
+    ]);
+  });
+
+  it("returns an empty array for an empty object", () => {
+    expect(fromColumnar({})).toEqual([]);
+  });
+
+  it("handles a single column", () => {
+    expect(fromColumnar({ a: [1, 2, 3] })).toEqual([{ a: 1 }, { a: 2 }, { a: 3 }]);
+  });
+
+  it("preserves column order within each row", () => {
+    const [firstRow] = fromColumnar({ b: [1], a: [2] });
+    expect(Object.keys(firstRow ?? {})).toEqual(["b", "a"]);
+  });
+
+  it("uses the longest column and fills short columns with undefined", () => {
+    expect(fromColumnar({ a: [1, 2], b: [3] })).toEqual([
+      { a: 1, b: 3 },
+      { a: 2, b: undefined },
+    ]);
+  });
+
+  it("round-trips values produced by toColumnarByFirstKeys", () => {
+    const rows = [
+      { a: 1, b: 2 },
+      { a: 3, b: 4 },
+    ];
+    expect(fromColumnar(toColumnarByFirstKeys(rows))).toEqual(rows);
   });
 });

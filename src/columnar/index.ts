@@ -60,3 +60,37 @@ export function toColumnarByAllKeys<T extends Record<string, unknown>>(
 
   return columns;
 }
+
+/**
+ * Converts a column-oriented object (arrays keyed by column) back into an array
+ * of row objects — the inverse of the `toColumnarBy*` helpers above. The row
+ * count is the length of the longest column; every row carries every key, with
+ * `undefined` where a column is shorter than the row count.
+ *
+ * @example
+ * fromColumnar({ a: [1, 3], b: [2, 4] });
+ * // => [{ a: 1, b: 2 }, { a: 3, b: 4 }]
+ */
+export function fromColumnar<T extends Record<string, unknown>>(
+  columns: {
+    [K in keyof T]: readonly T[K][];
+  }
+): T[] {
+  const entries = Object.entries(columns);
+
+  let rowCount = 0;
+  for (const [, column] of entries) {
+    rowCount = Math.max(rowCount, column.length);
+  }
+
+  const rows: T[] = [];
+  for (let i = 0; i < rowCount; i++) {
+    const row = {} as Record<string, unknown>;
+    for (const [key, column] of entries) {
+      row[key] = column[i];
+    }
+    rows.push(row as T);
+  }
+
+  return rows;
+}

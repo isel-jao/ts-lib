@@ -3,4 +3,4 @@ export * from "./ensure-unique-name";
 export * from "./create-function";
 export * from "./registry";
 export * from "./console-styles";
-export * from "./to-columnar";
+export * from "./columnar";
