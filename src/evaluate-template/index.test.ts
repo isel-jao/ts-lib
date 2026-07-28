@@ -16,8 +16,8 @@ describe("evaluateTemplate", () => {
       expect(evaluateTemplate("-3.14", {})).toBe(-3.14);
       expect(evaluateTemplate("1e3", {})).toBe(1000);
       expect(evaluateTemplate("NaN", {})).toBeNaN();
-      expect(evaluateTemplate("Infinity", {})).toBe(Infinity);
-      expect(evaluateTemplate("-Infinity", {})).toBe(-Infinity);
+      expect(evaluateTemplate("Infinity", {})).toBe(Number.POSITIVE_INFINITY);
+      expect(evaluateTemplate("-Infinity", {})).toBe(Number.NEGATIVE_INFINITY);
     });
 
     it("unwraps quoted strings", () => {
@@ -244,8 +244,10 @@ describe("evaluateTemplate", () => {
       expect(evaluateTemplate("{v: {{missing}}}", {})).toEqual({
         v: undefined,
       });
-      expect(evaluateTemplate("{n: {{0 / 0}}}", {})).toEqual({ n: NaN });
-      expect(evaluateTemplate("{n: {{1 / 0}}}", {})).toEqual({ n: Infinity });
+      expect(evaluateTemplate("{n: {{0 / 0}}}", {})).toEqual({ n: Number.NaN });
+      expect(evaluateTemplate("{n: {{1 / 0}}}", {})).toEqual({
+        n: Number.POSITIVE_INFINITY,
+      });
     });
   });
 

@@ -17,7 +17,7 @@ export function createAsyncFunction(
   doc: string,
   context: Record<string, unknown> = {},
 ): (...args: unknown[]) => Promise<unknown> {
-  const AsyncFunction = Object.getPrototypeOf(async function () {})
+  const AsyncFunction = Object.getPrototypeOf(async () => {})
     .constructor as new (
     ...params: string[]
   ) => (...args: unknown[]) => Promise<unknown>;
@@ -32,3 +32,7 @@ export function createAsyncFunction(
     return asyncFunction(...Object.values(context), ...args);
   };
 }
+
+type Address = `${string}:${number}`;
+
+const address: Address = "localhost:8080";
