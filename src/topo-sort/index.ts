@@ -11,10 +11,7 @@ export interface TopoSortResult {
  * ties are broken by the order nodes appear in `nodes`. Any node left over
  * once no more zero-indegree nodes remain is part of a cycle.
  */
-export function topoSort(
-  nodes: string[],
-  deps: Record<string, string[]>,
-): TopoSortResult {
+export function topoSort(nodes: string[], deps: Record<string, string[]>): TopoSortResult {
   const indegree = new Map<string, number>();
   const dependents = new Map<string, string[]>();
 
@@ -34,8 +31,7 @@ export function topoSort(
   const queue = nodes.filter((node) => indegree.get(node) === 0);
   const order: string[] = [];
 
-  while (queue.length > 0) {
-    const node = queue.shift()!;
+  for (let node = queue.shift(); node !== undefined; node = queue.shift()) {
     order.push(node);
     for (const dependent of dependents.get(node) ?? []) {
       const next = (indegree.get(dependent) ?? 0) - 1;

@@ -30,9 +30,7 @@ describe("evaluateTemplate", () => {
     it("parses objects with unquoted keys", () => {
       expect(evaluateTemplate("{x: 10}", {})).toEqual({ x: 10 });
       expect(evaluateTemplate("{}", {})).toEqual({});
-      expect(
-        evaluateTemplate('{a: {b: [1, "two", true]}, "c d": null}', {}),
-      ).toEqual({
+      expect(evaluateTemplate('{a: {b: [1, "two", true]}, "c d": null}', {})).toEqual({
         a: { b: [1, "two", true] },
         "c d": null,
       });
@@ -146,7 +144,7 @@ describe("evaluateTemplate", () => {
       expect(
         evaluateTemplate("{{items.filter((x) => x > 1)}}", {
           items: [1, 2, 3],
-        }),
+        })
       ).toEqual([2, 3]);
     });
 
@@ -177,12 +175,11 @@ describe("evaluateTemplate", () => {
 
   describe("templates embedded in a structure", () => {
     it("injects evaluated values so the result parses as a literal", () => {
-      expect(
-        evaluateTemplate('{x: {{10 + 20}}, y: {{"hello" + "world"}}}', {}),
-      ).toEqual({ x: 30, y: "helloworld" });
-      expect(evaluateTemplate("[{{a}}, {{b}}]", { a: 1, b: 2 })).toEqual([
-        1, 2,
-      ]);
+      expect(evaluateTemplate('{x: {{10 + 20}}, y: {{"hello" + "world"}}}', {})).toEqual({
+        x: 30,
+        y: "helloworld",
+      });
+      expect(evaluateTemplate("[{{a}}, {{b}}]", { a: 1, b: 2 })).toEqual([1, 2]);
     });
 
     it("preserves reference identity in structures", () => {
@@ -255,9 +252,7 @@ describe("evaluateTemplate", () => {
     it("splices serialized values and trims the result", () => {
       expect(evaluateTemplate("{{num}} {{num}}", { num: 10 })).toBe("10 10");
       expect(evaluateTemplate(" {{num}} {{num}} ", { num: 10 })).toBe("10 10");
-      expect(evaluateTemplate("hello {{name}}", { name: "world" })).toBe(
-        "hello world",
-      );
+      expect(evaluateTemplate("hello {{name}}", { name: "world" })).toBe("hello world");
     });
 
     it("injects an empty string for undefined and null", () => {
@@ -268,14 +263,10 @@ describe("evaluateTemplate", () => {
 
     it("serializes values textually when the doc is not a structure", () => {
       const fn = function greet() {};
-      expect(evaluateTemplate("id: {{fn}}", { fn })).toBe(
-        `id: ${fn.toString()}`,
-      );
+      expect(evaluateTemplate("id: {{fn}}", { fn })).toBe(`id: ${fn.toString()}`);
       const circular: Record<string, unknown> = {};
       circular.self = circular;
-      expect(evaluateTemplate("x: {{c}}", { c: circular })).toBe(
-        "x: [object Object]",
-      );
+      expect(evaluateTemplate("x: {{c}}", { c: circular })).toBe("x: [object Object]");
     });
 
     it("re-parses the spliced text as a literal", () => {
@@ -298,7 +289,7 @@ describe("evaluateTemplate", () => {
     it("observes a failing expression, which still evaluates to undefined", () => {
       const failures: string[] = [];
       const result = evaluateTemplate("{{missing.value}}", {}, (error, expr) =>
-        failures.push(`${expr.trim()}: ${(error as Error).message}`),
+        failures.push(`${expr.trim()}: ${(error as Error).message}`)
       );
       expect(result).toBeUndefined();
       expect(failures).toEqual(["missing.value: missing is not defined"]);
@@ -314,10 +305,8 @@ describe("evaluateTemplate", () => {
 
     it("reports each failing template independently", () => {
       const failures: unknown[] = [];
-      const result = evaluateTemplate(
-        "{a: {{boom.x}}, b: {{ok}}}",
-        { ok: 5 },
-        (error) => failures.push(error),
+      const result = evaluateTemplate("{a: {{boom.x}}, b: {{ok}}}", { ok: 5 }, (error) =>
+        failures.push(error)
       );
       expect(result).toEqual({ a: undefined, b: 5 });
       expect(failures).toHaveLength(1);

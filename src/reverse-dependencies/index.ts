@@ -5,7 +5,7 @@
  * edges pointing to targets that are not keys of `deps` are ignored.
  */
 export function reverseDependencies(
-  deps: ReadonlyMap<string, ReadonlySet<string>>,
+  deps: ReadonlyMap<string, ReadonlySet<string>>
 ): ReadonlyMap<string, ReadonlySet<string>> {
   const reversed = new Map<string, Set<string>>();
 

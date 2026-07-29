@@ -39,11 +39,7 @@ describe("topoSort", () => {
 
     it("breaks ties by position in `nodes`", () => {
       expect(topoSort(["b", "a", "c"], {}).order).toEqual(["b", "a", "c"]);
-      expect(topoSort(["x", "b", "a"], { b: ["x"], a: ["x"] }).order).toEqual([
-        "x",
-        "b",
-        "a",
-      ]);
+      expect(topoSort(["x", "b", "a"], { b: ["x"], a: ["x"] }).order).toEqual(["x", "b", "a"]);
     });
 
     it("ignores deps pointing outside `nodes`", () => {

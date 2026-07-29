@@ -1,9 +1,5 @@
-export function ensureUniqueName(
-  name: string,
-  existingNames: Set<string> | string[],
-): string {
-  const set =
-    existingNames instanceof Set ? existingNames : new Set(existingNames);
+export function ensureUniqueName(name: string, existingNames: Set<string> | string[]): string {
+  const set = existingNames instanceof Set ? existingNames : new Set(existingNames);
   if (!set.has(name)) {
     return name;
   }
