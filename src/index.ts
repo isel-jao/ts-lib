@@ -6,4 +6,6 @@ export * from "./console-styles";
 export * from "./columnar";
 export * from "./evaluate-template";
 export * from "./http-error";
+export * from "./reverse-dependencies";
+export * from "./topo-sort";
 export * from "./utility-types";

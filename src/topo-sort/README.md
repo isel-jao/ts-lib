@@ -186,8 +186,6 @@ const { order } = topoSort(
 order; // ["core", "ui", "cli", "app"] — core first, app last
 ```
 
-Note: `topoSort` currently lives in `src/topo-sort` but is not re-exported from `src/index.ts`; add `export * from "./topo-sort";` there to make the package-level import above resolve.
-
 ## Edge cases
 
 | Input | Result | Source |

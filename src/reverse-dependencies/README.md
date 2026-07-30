@@ -151,8 +151,6 @@ for (const changedFile of watcher.changes) {
 }
 ```
 
-Note: `reverseDependencies` currently lives in `src/reverse-dependencies` but is not re-exported from `src/index.ts`; add `export * from "./reverse-dependencies";` there to make the package-level imports above resolve.
-
 ## Edge cases
 
 | Input | Result | Source |

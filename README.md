@@ -40,5 +40,3 @@ Every module ships its own reference doc covering why it exists, how it works in
 | [ring-buffer](src/ring-buffer/README.md) | Fixed-capacity circular buffer with O(1) insertion and removal at both ends. | `RingBuffer` |
 | [topo-sort](src/topo-sort/README.md) | Topological sort with cycle detection. | `topoSort` |
 | [utility-types](src/utility-types/README.md) | Derives the authored (pre-`evaluateTemplate`) shape of a config from its resolved shape. | `Templated`, `TemplatedRecord` |
-
-> **Note:** `topo-sort` and `reverse-dependencies` are not currently re-exported from `src/index.ts`, so they cannot be imported from the package entry point yet.
