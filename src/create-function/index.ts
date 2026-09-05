@@ -1,8 +1,14 @@
+type CreateFunctionOptions = {
+  doc: string;
+  context?: Record<string, unknown>;
+  params?: string[];
+};
+
 export function createSyncFunction(
-  doc: string,
-  context: Record<string, unknown> = {}
+  options: CreateFunctionOptions
 ): (...args: unknown[]) => unknown {
-  const syncFunction = new Function(...Object.keys(context), "...args", doc) as (
+  const { doc, context = {}, params = [] } = options;
+  const syncFunction = new Function(...Object.keys(context), params.join(","), doc) as (
     ...params: unknown[]
   ) => unknown;
 
@@ -12,20 +18,16 @@ export function createSyncFunction(
 }
 
 export function createAsyncFunction(
-  doc: string,
-  context: Record<string, unknown> = {}
+  options: CreateFunctionOptions
 ): (...args: unknown[]) => Promise<unknown> {
+  const { doc, context = {}, params = [] } = options;
   const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor as new (
     ...params: string[]
   ) => (...args: unknown[]) => Promise<unknown>;
 
-  const asyncFunction = new AsyncFunction(...Object.keys(context), "...args", doc);
+  const asyncFunction = new AsyncFunction(...Object.keys(context), params.join(","), doc);
 
   return async (...args: unknown[]): Promise<unknown> => {
     return asyncFunction(...Object.values(context), ...args);
   };
 }
-
-type Address = `${string}:${number}`;
-
-const address: Address = "localhost:8080";
