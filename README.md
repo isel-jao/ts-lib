@@ -34,9 +34,8 @@ Every module ships its own reference doc covering why it exists, how it works in
 | [create-function](src/create-function/README.md) | Builds sync and async functions from source strings at runtime. | `createSyncFunction`, `createAsyncFunction` |
 | [ensure-unique-name](src/ensure-unique-name/README.md) | Suffixes a name until it stops colliding with names already taken. | `ensureUniqueName` |
 | [evaluate-template](src/evaluate-template/README.md) | Resolves `{{ ... }}` expressions against a context and parses the document into a typed value. | `evaluateTemplate`, `serialize`, `TEMPLATE_RE` |
+| [get-reverse-graph](src/get-reverse-graph/README.md) | Inverts a dependency graph to answer "what depends on this?". | `getReverseGraph` |
 | [http-error](src/http-error/README.md) | Typed error classes for the common 4xx/5xx statuses, with a JSON-serializable shape. | `HttpError`, `NotFoundError`, `createHttpError` |
 | [registry](src/registry/README.md) | A named-value store that fails fast on duplicate registration. | `Registry` |
-| [reverse-dependencies](src/reverse-dependencies/README.md) | Inverts a dependency graph to answer "what depends on this?". | `reverseDependencies` |
 | [ring-buffer](src/ring-buffer/README.md) | Fixed-capacity circular buffer with O(1) insertion and removal at both ends. | `RingBuffer` |
-| [topo-sort](src/topo-sort/README.md) | Topological sort with cycle detection. | `topoSort` |
 | [utility-types](src/utility-types/README.md) | Derives the authored (pre-`evaluateTemplate`) shape of a config from its resolved shape. | `Templated`, `TemplatedRecord` |
