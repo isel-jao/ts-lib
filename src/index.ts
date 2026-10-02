@@ -1,4 +1,6 @@
 export * from "./ring-buffer";
+export * from "./clamp";
+export * from "./map-range";
 export * from "./ensure-unique-name";
 export * from "./create-function";
 export * from "./registry";

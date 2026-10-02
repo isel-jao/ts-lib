@@ -29,6 +29,7 @@ Every module ships its own reference doc covering why it exists, how it works in
 
 | Module | What it does | Main exports |
 | --- | --- | --- |
+| [clamp](src/clamp/README.md) | Constrains a number to a pair of bounds, named or as a tuple. | `clamp` |
 | [columnar](src/columnar/README.md) | Converts arrays of records to and from column-oriented form. | `toColumnarByFirstKeys`, `toColumnarByAllKeys`, `fromColumnar` |
 | [console-styles](src/console-styles/README.md) | ANSI escape codes and an emoji set for styling terminal output. | `Ansi`, `Emoji` |
 | [create-function](src/create-function/README.md) | Builds sync and async functions from source strings at runtime. | `createSyncFunction`, `createAsyncFunction` |
@@ -36,6 +37,7 @@ Every module ships its own reference doc covering why it exists, how it works in
 | [evaluate-template](src/evaluate-template/README.md) | Resolves `{{ ... }}` expressions against a context and parses the document into a typed value. | `evaluateTemplate`, `serialize`, `TEMPLATE_RE` |
 | [get-reverse-graph](src/get-reverse-graph/README.md) | Inverts a dependency graph to answer "what depends on this?". | `getReverseGraph` |
 | [http-error](src/http-error/README.md) | Typed error classes for the common 4xx/5xx statuses, with a JSON-serializable shape. | `HttpError`, `NotFoundError`, `createHttpError` |
+| [map-range](src/map-range/README.md) | Rescales a number from one range to another, with optional clamping. | `mapRange` |
 | [registry](src/registry/README.md) | A named-value store that fails fast on duplicate registration. | `Registry` |
 | [ring-buffer](src/ring-buffer/README.md) | Fixed-capacity circular buffer with O(1) insertion and removal at both ends. | `RingBuffer` |
 | [utility-types](src/utility-types/README.md) | Derives the authored (pre-`evaluateTemplate`) shape of a config from its resolved shape. | `Templated`, `TemplatedRecord` |
