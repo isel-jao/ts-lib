@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createAsyncFunction, createSyncFunction } from "./index";
+import { createAsyncFunction, createSyncFunction } from "./index.js";
 
 describe("createSyncFunction", () => {
   it("executes the doc body and returns the result", () => {

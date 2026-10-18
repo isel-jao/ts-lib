@@ -7,7 +7,7 @@ A collection of small, general-purpose TypeScript utilities for everyday applica
 - **Zero dependencies** — nothing gets pulled into your bundle but this library itself.
 - **Tree-shakeable** — ships as ES modules with no side effects, so bundlers only include the parts you actually import.
 - **Type-safe** — written in TypeScript with full type definitions included.
-- Works in both ESM and CommonJS projects.
+- Ships as ESM. CommonJS projects can load it with `require()` on Node 20.19+ or 22.12+.
 
 ## Installation
 
@@ -29,6 +29,7 @@ Every module ships its own reference doc covering why it exists, how it works in
 
 | Module | What it does | Main exports |
 | --- | --- | --- |
+| [backoff](src/backoff/README.md) | Retries an async operation with pluggable delay strategies: fixed, linear, exponential, and jittered. | `withRetry`, `exponentialJitterBackoff`, `fixedBackoff` |
 | [clamp](src/clamp/README.md) | Constrains a number to a pair of bounds, named or as a tuple. | `clamp` |
 | [columnar](src/columnar/README.md) | Converts arrays of records to and from column-oriented form. | `toColumnarByFirstKeys`, `toColumnarByAllKeys`, `fromColumnar` |
 | [console-styles](src/console-styles/README.md) | ANSI escape codes and an emoji set for styling terminal output. | `Ansi`, `Emoji` |

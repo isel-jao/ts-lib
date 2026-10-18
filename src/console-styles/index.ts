@@ -1,2 +1,2 @@
-export * from "./ansi-codes";
-export * from "./emoji";
+export * from "./ansi-codes.js";
+export * from "./emoji.js";

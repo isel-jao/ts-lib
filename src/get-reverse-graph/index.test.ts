@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { type Graph, getReverseGraph } from "./index";
+import { type Graph, getReverseGraph } from "./index.js";
 
 /** Builds a graph from a plain object, so the tests stay readable. */
 const graph = (edges: Record<string, string[]>): Graph =>

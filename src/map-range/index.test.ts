@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { mapRange } from "./index";
+import { mapRange } from "./index.js";
 
 describe("mapRange", () => {
   describe("basics", () => {

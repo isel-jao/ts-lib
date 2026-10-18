@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ensureUniqueName } from "./index";
+import { ensureUniqueName } from "./index.js";
 
 describe("ensureUniqueName", () => {
   it("returns the name unchanged when not taken", () => {

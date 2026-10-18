@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { clamp } from "./index";
+import { clamp } from "./index.js";
 
 describe("clamp", () => {
   describe("min/max form", () => {

@@ -22,7 +22,7 @@ import {
   UnprocessableEntityError,
   UnsupportedMediaTypeError,
   createHttpError,
-} from "./index";
+} from "./index.js";
 
 const cases = [
   [BadRequestError, 400, "Bad Request"],

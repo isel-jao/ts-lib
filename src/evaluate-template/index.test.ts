@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { evaluateTemplate } from "./index";
+import { evaluateTemplate } from "./index.js";
 
 describe("evaluateTemplate", () => {
   describe("literal strings", () => {

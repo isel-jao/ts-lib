@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fromColumnar, toColumnarByAllKeys, toColumnarByFirstKeys } from "./index";
+import { fromColumnar, toColumnarByAllKeys, toColumnarByFirstKeys } from "./index.js";
 
 describe("toColumnarByFirstKeys", () => {
   it("converts an array of objects into arrays keyed by column", () => {
