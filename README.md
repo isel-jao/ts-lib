@@ -29,7 +29,6 @@ Every module ships its own reference doc covering why it exists, how it works in
 
 | Module | What it does | Main exports |
 | --- | --- | --- |
-| [backoff](src/backoff/README.md) | Retries an async operation with pluggable delay strategies: fixed, linear, exponential, and jittered. | `withRetry`, `exponentialJitterBackoff`, `fixedBackoff` |
 | [clamp](src/clamp/README.md) | Constrains a number to a pair of bounds, named or as a tuple. | `clamp` |
 | [columnar](src/columnar/README.md) | Converts arrays of records to and from column-oriented form. | `toColumnarByFirstKeys`, `toColumnarByAllKeys`, `fromColumnar` |
 | [console-styles](src/console-styles/README.md) | ANSI escape codes and an emoji set for styling terminal output. | `Ansi`, `Emoji` |
@@ -42,3 +41,4 @@ Every module ships its own reference doc covering why it exists, how it works in
 | [registry](src/registry/README.md) | A named-value store that fails fast on duplicate registration. | `Registry` |
 | [ring-buffer](src/ring-buffer/README.md) | Fixed-capacity circular buffer with O(1) insertion and removal at both ends. | `RingBuffer` |
 | [utility-types](src/utility-types/README.md) | Derives the authored (pre-`evaluateTemplate`) shape of a config from its resolved shape. | `Templated`, `TemplatedRecord` |
+| [with-retry](src/with-retry/README.md) | Wraps a function so failed calls are retried with a pluggable backoff strategy: fixed, linear, or exponential with jitter. | `withRetry`, `ExponentialBackoff`, `FixedBackoff`, `LinearBackoff` |

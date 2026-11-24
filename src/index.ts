@@ -9,5 +9,5 @@ export * from "./columnar/index.js";
 export * from "./evaluate-template/index.js";
 export * from "./http-error/index.js";
 export * from "./get-reverse-graph/index.js";
-export * from "./backoff/index.js";
+export * from "./with-retry/index.js";
 export * from "./utility-types/index.js";
